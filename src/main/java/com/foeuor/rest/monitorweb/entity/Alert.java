@@ -1,6 +1,7 @@
 package com.foeuor.rest.monitorweb.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -19,7 +20,7 @@ public class Alert {
 	private Long id;
 	private String sensorId;
 	private double reading;
-	private LocalDate alertDate;
+	private LocalDateTime alertDate;
 	private LocalTime alertTime;
 	
 	
@@ -44,13 +45,14 @@ public class Alert {
 	public void setReading(double reading) {
 		this.reading = reading;
 	}
-	public LocalDate getAlertDate() {
+	public void setAlertDate(LocalDateTime alertDate) {
+		this.alertDate = alertDate;
+	}
+	
+	public LocalDateTime getAlertDate() {
 		return alertDate;
 	}
 	
-	public void setAlertDate(LocalDate alertDate) {
-		this.alertDate = alertDate;
-	}
 	
 	public LocalTime getAlertTime() {
 		return alertTime;
@@ -60,4 +62,5 @@ public class Alert {
 		this.alertTime = alertTime;
 	}
 	
+
 }

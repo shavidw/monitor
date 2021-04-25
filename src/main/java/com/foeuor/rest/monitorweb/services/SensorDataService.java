@@ -1,11 +1,13 @@
 package com.foeuor.rest.monitorweb.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.foeuor.rest.monitorweb.dto.SensorDataDTO;
+import com.foeuor.rest.monitorweb.dto.SensorGraphDTO;
 import com.foeuor.rest.monitorweb.entity.SensorData;
 import com.foeuor.rest.monitorweb.repositories.SensorDataRepository;
 
@@ -28,8 +30,11 @@ public class SensorDataService {
 		return true;
 	}
 	
-	public List<SensorData> getSensorData(String sensorId) {
-		return sensorDataRepository.findSensorDatasBySensorId(sensorId);
+	public List<SensorGraphDTO> getSensorData(String sensorId) {
+		return sensorDataRepository.findSensorDatasBySensorId(sensorId)
+				.stream()
+				.map(e -> new SensorGraphDTO(e.getAlertDate().toString(), e.getReading()))
+				.collect(Collectors.toList());
 	}
 	
 }
